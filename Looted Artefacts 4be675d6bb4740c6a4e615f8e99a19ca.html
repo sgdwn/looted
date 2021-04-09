@@ -1,0 +1,632 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Looted Artefacts</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4be675d6-bb47-40c6-a4e6-15f8e99a19ca" class="page sans"><header><h1 class="page-title">Looted Artefacts</h1></header><div class="page-body"><h1 id="80d94133-fe86-4080-a2b4-bacffb67f074" class="">British Empire</h1><hr id="25810891-a3f6-426c-af6e-8e3bc583649d"/><h3 id="9a891bb2-a72e-43c5-8c73-e567691151de" class="">Benin Bronzes</h3><div id="faa53b52-5251-476b-bc0e-cf629f3d3877" class="column-list"><div id="136280fe-fe82-475c-844a-05ee9723e81e" style="width:50%" class="column"><figure id="1e397159-a4d3-417d-bf98-da72b19b4593" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/6/68/Benin_Bronzes_-_British_Museum_-_Joy_of_Museums_%28cropped%29.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Benin_Bronzes_-_British_Museum_-_Joy_of_Museums_%28cropped%29.jpg"/></a></figure></div><div id="73603e9a-2f9a-4367-8702-8070d7d53c7f" style="width:50%" class="column"><p id="b32a6f72-b120-4f04-b34a-4798745418e9" class="">The <strong>Benin Bronzes</strong> are a group of more than a thousand metal plaques and sculptures that decorated the royal palace of the Kingdom of Benin in what is now Nigeria. Collectively, the objects form the best known examples of Benin art, created from the 13th century onwards by the Edo people, which also included other sculptures in brass or bronze, including some famous portrait heads and smaller pieces.</p><p id="290b727f-68c5-40d5-ae18-a261bf09f42f" class="">Most of the plaques and other objects were looted by British forces during the Benin Expedition of 1897 as imperial control was being consolidated in Southern Nigeria. Two hundred pieces were taken to the British Museum in London, while the rest found their way to other European museums. A large number are held by the British Museum with other notable collections in Germany and the United States.</p></div></div><hr id="cfab1fc2-9c53-4c18-90ab-3e079b0ab57c"/><h3 id="09de8d7e-6b6b-4db7-ab3c-90e405d04dfe" class="">Elgin Marbles</h3><div id="b732bf81-111f-4f97-ad41-dd243f5198d2" class="column-list"><div id="7ce9bd23-4c60-41c6-aedd-db1479147a5d" style="width:50%" class="column"><figure id="a862be90-ab44-4d99-bd9b-170cd3669be4" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/e/e0/Elgin_Marbles_%286942617130%29.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Elgin_Marbles_%286942617130%29.jpg"/></a></figure></div><div id="c9ed31d9-ed32-49cc-a6bb-dc1c1c656f90" style="width:50%" class="column"><p id="51f827ae-bf18-41ee-ab07-7c1ce7b0114f" class="">The <strong>Elgin Marbles</strong> (<a href="https://en.wikipedia.org/wiki/Help:IPA/English">/ˈɛlɡɪn/</a>), also known as the <strong>Parthenon Marbles</strong> (Greek: Γλυπτά του Παρθενώνα), are a collection of Classical Greek marble structures made under the supervision of the architect and sculptor Phidias and his assistants. They were originally part of the temple of the Parthenon and other buildings on the Acropolis of Athens. The collection is now on display in the British Museum, in the purpose-built Duveen Gallery.</p><p id="1ef64b61-b83d-4f95-a991-62b81301bbbe" class="">From 1801 to 1812, agents of Thomas Bruce, 7th earl of Elgin removed about half of the surviving sculptures of the Parthenon, as well as sculptures from the Propylaea and Erechtheum. The Marbles were transported by sea to Britain. Elgin later claimed to have obtained in 1801 an official decree (a firman) from the Sublime Porte, the central government of the Ottoman Empire which at that time ruled Greece. This firman has not been found in the Ottoman archives despite its wealth of documents from the same period and its veracity is disputed. The Acropolis Museum displays a portion of the complete frieze, aligned in orientation and within sight of the Parthenon, with the position of the missing elements clearly marked and space left should they be returned to Athens.</p><p id="733d9d08-c11f-4469-b7a4-c3000d622369" class="">In Britain, the acquisition of the collection was supported by some, while some others, such as Lord Byron, likened the Earl&#x27;s actions to vandalism or looting. Following a public debate in Parliament and its subsequent exoneration of Elgin, he sold the Marbles to the British government in 1816. They were then passed into the trusteeship of the British Museum, where they are now on display in the purpose-built Duveen Gallery.</p></div></div><hr id="e12a6c1d-c66b-4d66-881f-15af05a71f1d"/><h3 id="7408a4e5-d857-4271-b32e-f95bfbf339b0" class="">Koh-i-Nor Diamond</h3><div id="5f0e5991-67f4-4d67-96ea-88669caa5195" class="column-list"><div id="d57eacca-bb39-4935-8bc5-54b81d1f24c0" style="width:50%" class="column"><figure id="fb3e0dff-c735-43bc-8d80-9346401c856c" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/b/bf/Koh-I-Noor.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Koh-I-Noor.jpg"/></a></figure></div><div id="224e58f1-0892-4e67-8cb8-83341940d1fa" style="width:50%" class="column"><p id="b9bfd9c2-c346-4cb0-9a5c-4fce3e10ab75" class="">The <strong>Koh-i-Noor</strong> (<a href="https://en.wikipedia.org/wiki/Help:IPA/English">/ˌkoʊɪˈnʊər/</a>; <a href="https://en.wikipedia.org/wiki/Persian_language">Persian</a>: کوہ نور‎, lit. &quot;Mountain of light&quot;), also spelt <strong>Kohinoor</strong> and <strong>Koh-i-Nur</strong>, is one of the largest cut diamonds in the world, weighing 105.6 carats (21.12 g). It is part of the British Crown Jewels.</p><p id="c6de1394-bed3-45ae-857f-c45053adb117" class="">Possibly mined in Kollur Mine, India, during the period of the Kakatiya dynasty, there is no record of its original weight – but the earliest well-attested weight is 186 old carats (191 metric carats or 38.2 g). It was later acquired by Delhi Sultan Alauddin Khalji. The diamond was also part of the Mughal Peacock Throne. It changed hands between various factions in south and west Asia, until being ceded to Queen Victoria after the British annexation of the Punjab in 1849.</p><p id="37e5f75f-3c29-4fad-883f-749ff0c197fc" class="">Originally, the stone was of a similar cut to other Mughal-era diamonds, like the Darya-i-Noor, which are now in the Iranian Crown Jewels. In 1851, it went on display at the Great Exhibition in London, but the lacklustre cut failed to impress viewers. Prince Albert, husband of Queen Victoria, ordered it to be re-cut as an oval brilliant by Coster Diamonds. By modern standards, the culet (point at the bottom of a gemstone) is unusually broad, giving the impression of a black hole when the stone is viewed head-on; it is nevertheless regarded by gemologists as &quot;full of life&quot;.</p></div></div><hr id="77e13bfc-f36e-4d70-8371-7f592db369c2"/><h3 id="83d86d06-1fb8-4934-83c7-97bef9e02902" class="">Rosetta Stone</h3><div id="c35dd877-9b9b-48a8-a788-29988ec1a1cf" class="column-list"><div id="983fe780-38a9-49db-a787-3bd18f3d169c" style="width:50%" class="column"><figure id="2aef4df8-d6b2-4a4a-9a86-cde3e841a5c5" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/2/23/Rosetta_Stone.JPG"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Rosetta_Stone.JPG"/></a></figure></div><div id="9fe01f34-3adc-445f-abfc-2dca917261cf" style="width:50%" class="column"><p id="63bdb406-556a-4409-bf6a-af66f381ca24" class="">The <strong>Rosetta Stone</strong> is a granadiorite stele inscribed with three versions of a decree issued in Memphis, Egypt in 196 BC during the Ptolemain dynasty on behalf of King Ptolemy V Epiphanes. The top and middle texts are in Ancient Egyptian using hieroglyphic and Demotic scripts respectively, while the bottom is in Ancient Greek. The decree has only minor differences between the three versions, making the Rosetta Stone key to deciphering the Egyptian scripts.</p><p id="bc44cc8c-de4e-490b-87e4-5849d8ed4802" class="">The stone was carved during the Hellenistic Period and is believed to have originally been displayed within a temple, possibly at nearby Sais. It was probably moved in late antiquity or during the Mameluk period, and was eventually used as building material in the construction of Fort Julien near the town of Rashid (Rosetta) in the Nile Delta. It was discovered there in July 1799 by French officer Pierre-Francois Bouchard during the Napoleonic campaign in Egypt. It was the first Ancient Egyptian bilingual text recovered in modern times, and it aroused widespread public interest with its potential to decipher this previously untranslated hieroglyphic script. Lithographic copies and plaster casts soon began circulating among European museums and scholars. When the British defeated the French they took the stone to London under the Capitulation of Alexandria in 1801. It has been on public display at the British Museum almost continuously since 1802 and is the most visited object there.</p></div></div><hr id="a3ae5a76-30a7-404b-a644-d84d99077e89"/><h3 id="f1015072-aafa-4352-b1e5-47502b718bf5" class="">Tipu’s Tiger</h3><div id="f35fae37-2baa-4ed9-896b-040332d29322" class="column-list"><div id="131c87d1-8d55-437b-9461-5de01ae9331d" style="width:50%" class="column"><figure id="375449c8-920f-436e-9593-b00daaca2c04" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/5/5b/Tipu%27s_Tiger_front_view_2006AH4173.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Tipu%27s_Tiger_front_view_2006AH4173.jpg"/></a></figure></div><div id="7c55c404-03b7-4334-b1b3-b9110ff55312" style="width:50%" class="column"><p id="e7a625ae-435c-40fd-ac0a-426238cae13f" class=""><strong>Tipu&#x27;s Tiger</strong> is an eighteenth-century automaton or mechanical toy created for Tipu Sultan, the ruler of the Kingdom of Mysore in India. The carved and painted wood casing represents a tiger savaging a near life-size European man. Mechanisms inside the tiger and man&#x27;s bodies make one hand of the man move, emit a wailing sound from his mouth and grunts from the tiger. In addition a flap on the side of the tiger folds down to reveal the keyboard of a small pipe organ with 18 notes.</p><p id="f9062587-c8c0-40a5-bc68-f166a7f97127" class="">The tiger was created for Tipu and makes use of his personal emblem of the tiger and expresses his hatred of his enemy, the British of the East India Company. The tiger was discovered in his summer palace after East India Company troops stormed Tipu&#x27;s capital in 1799. The Governor General, Lord Mornington sent the tiger to Britain initially intending it to be an exhibit in the Tower of London. First exhibited to the London public in 1808 in East India House, then the offices of the East India Company in London, it was later transferred to the Victoria and Albert Museum (V&amp;A) in 1880 (accession number 2545(IS)). It now forms part of the permanent exhibit on the &quot;Imperial courts of South India&quot;. From the moment it arrived in London to the present day, Tipu&#x27;s Tiger has been a popular attraction to the public.</p></div></div><hr id="2c0db9ed-1215-441e-9f5f-336e623928b6"/><h3 id="4313d991-605c-402b-8775-51a68a3c4703" class="">Hoa Kakananai&#x27;a</h3><div id="f2d750fe-95bf-4a82-8c7d-f60a7749a2f1" class="column-list"><div id="81bf7096-cca9-47d5-9627-a5327e4ad506" style="width:50%" class="column"><figure id="6dbaec26-a4be-42a3-a5cb-efee86ea715b" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/9/9e/Angled_View_of_the_Hoa_Hakananai%27a_Statue.JPG"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Angled_View_of_the_Hoa_Hakananai%27a_Statue.JPG"/></a></figure></div><div id="ed212248-e351-44c1-b226-ce4f99e64d52" style="width:50%" class="column"><p id="673c3956-b61f-4e60-84de-a4980bccea7b" class="">Hoa Hakananai&#x27;a is a moai (Easter Island statue) housed in the British Museum in London. It was taken from Orongo, Easter Island (Rapa Nui) in November 1868 by the crew of the British ship HMS Topaze, and arrived in England in August 1869. Though relatively small, it is considered to be typical of the island&#x27;s statue form, but distinguished by carvings added to the back, associated with the island&#x27;s birdman cult. It has been described as a &quot;masterpiece&quot; and &quot;without a doubt, the finest example of Easter Island sculpture&quot;.</p><figure id="fcaca816-f1c7-46b4-a58a-74b3a9076272" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/3/30/Hoa_Hakananai%27a.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Hoa_Hakananai%27a.jpg"/></a></figure></div></div><hr id="589fcad6-23a9-469e-b138-c8479f7c7fdc"/><h3 id="31388ede-3003-42f4-a093-3db99c9079e0" class="">Tabot</h3><div id="70b31d02-3087-4961-88f5-5e43078a722c" class="column-list"><div id="19447872-617b-4392-af10-887ee0c17b6f" style="width:50%" class="column"><figure id="89bb0dc1-2ab7-429a-a788-18a9082f259f" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/0/01/01_-_priests_carring_Tabots.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/0/01/01_-_priests_carring_Tabots.jpg"/></a></figure></div><div id="e8a514d5-2398-4b2e-950e-6f1cabbd4a7a" style="width:50%" class="column"><p id="455f6d73-96f0-4bdc-a7a1-eb200f02b98d" class="">Tabot (Ge&#x27;ez ታቦት tābōt, sometimes spelled tabout) is a Ge&#x27;ez word referring to a replica of the Tablets of Law, onto which the Biblical Ten Commandments were inscribed, used in the practices of the Ethiopian Orthodox Church. Tabot can also refer to a replica of the Ark of the Covenant. The word tsellat (Ge&#x27;ez: ጽላት ṣallāt, modern ṣellāt) refers only to a replica of the Tablets, but is less commonly used.</p><p id="9183f735-242c-44e8-8537-5c43770d0f70" class="">Although Ethiopia was never colonised by the British, many tabots were looted by British soldiers during the 1868 Expedition to Abyssinia, also known as the Battle of Magdala, and is a cause of anger among Ethiopians.</p><p id="bc0c8b61-7c5d-4643-941c-1c0dbb991898" class="">The return in February 2002 of one looted tabot, discovered in the storage of St John&#x27;s Episcopal Church in Edinburgh, was a cause of public rejoicing in Addis Ababa. Another was returned in 2003 after Ian McLennan recognised the ancient tabot at an auction in London. He bought it and donated it to the government of Ethiopia.</p></div></div><hr id="c01bc7b8-6994-4f25-9a4d-2310dd9102c6"/><h3 id="7a8fab2f-c3e3-4ca6-81e1-6982c5e132b1" class="">Oxus Treasure</h3><div id="33662b35-89f3-4e6d-a85d-6fc283058a9a" class="column-list"><div id="b7af4f74-a740-4e9f-831f-7dceed1e6462" style="width:50%" class="column"><figure id="35c88b0d-a9b3-4a2a-a915-f792dc653993" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/1/10/Gold_statuettes_from_the_Oxus_Treasure_by_Nickmard_Khoey.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Gold_statuettes_from_the_Oxus_Treasure_by_Nickmard_Khoey.jpg"/></a></figure></div><div id="aa32761a-0e61-437c-85ea-6b53215cba41" style="width:50%" class="column"><p id="ded17d25-0bc1-4132-873a-a0b5963cdc16" class="">The Oxus treasure (Persian: گنجینه آمودریا) is a collection of about 180 surviving pieces of metalwork in gold and silver, the majority rather small, plus perhaps about 200 coins, from the Achaemenid Persian period which were found by the Oxus river about 1877–1880. The exact place and date of the find remain unclear, but is often proposed as being near Kobadiyan. It is likely that many other pieces from the hoard were melted down for bullion; early reports suggest there were originally some 1500 coins, and mention types of metalwork that are not among the surviving pieces. The metalwork is believed to date from the sixth to fourth centuries BC, but the coins show a greater range, with some of those believed to belong to the treasure coming from around 200 BC. The most likely origin for the treasure is that it belonged to a temple, where votive offerings were deposited over a long period. How it came to be deposited is unknown.</p><p id="fe090eeb-5310-476b-bace-b16ee2dc432a" class="">As a group, the treasure is the most important survival of what was once an enormous production of Achaemenid work in precious metal. It displays a very wide range of quality of execution, with the many gold votive plaques mostly crudely executed, some perhaps by the donors themselves, while other objects are of superb quality, presumably that expected by the court.</p><p id="e2b9f174-5e6c-45df-a7bf-a92b49677b77" class="">The British Museum now has nearly all the surviving metalwork, with one of the pair of griffin-headed bracelets on loan from the Victoria and Albert Museum, and displays them in Room 52. The group arrived at the museum by different routes, with many items bequeathed to the nation by Augustus Wollaston Franks. The coins are more widely dispersed, and more difficult to firmly connect with the treasure. A group believed to come from it is in the Hermitage Museum in Saint Petersburg, and other collections have examples.</p></div></div><hr id="fe3c8f68-72b6-43fe-8c1c-7b274a478bb9"/><h3 id="63ae85c1-53c6-4350-b479-f419f4e451c6" class="">Dunhuang Manuscripts</h3><div id="614dbc8d-756d-456a-9a76-8dc8434483a2" class="column-list"><div id="7c97be5d-47b2-4bae-a851-2355697c2a12" style="width:50%" class="column"><figure id="419af323-500b-4f5a-ab34-c51a14cbf35b" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/0/04/Digitisation_of_a_Dunhuang_manuscript.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Digitisation_of_a_Dunhuang_manuscript.jpg"/></a></figure></div><div id="47097698-e97b-45e4-81d3-709762c4c668" style="width:50%" class="column"><p id="fcd85953-c803-421c-9d91-2ea7f529f717" class="">The Dunhuang manuscripts are a cache of important religious and secular documents discovered in the Mogao Caves of Dunhuang, China, in the early 20th century. Dating from late 4th to early 11th centuries, the manuscripts include works ranging from history and mathematics to folk songs and dance. There are also many religious documents, most of which are Buddhist, but other religions including Daoism, Nestorian Christianity and Manichaeism are also represented. The majority of the manuscripts are in Chinese. Other languages represented are Khotanese, Kuchean, Sanskrit, Sogdian, Tangut, Tibetan, Old Uyghur language, Prakrit and Old Turkic. The manuscripts are a major resource for academic studies in a wide variety of fields including history, religious studies, linguistics, and manuscript studies.</p><p id="b95d547a-ae47-4ef9-81fd-9cb1a5d6b7fd" class="">Scholars in Beijing were alerted to the significance of the manuscripts after seeing samples of the documents in Pelliot&#x27;s possession. Due to the efforts of the scholar and antiquarian Luo Zhenyu, most of the remaining Chinese manuscripts were taken to Beijing in 1910 and are now in the National Library of China. Several thousands of folios of Tibetan manuscripts were left in Dunhuang and are now located in several museums and libraries in the region. Rumours of caches of documents taken by local people continued for some time, and a cache of documents hidden by Wang from the authorities was later found in the 1940s. Those purchased by Western scholars are now kept in institutions all over the world, such as the British Library and the Bibliothèque nationale de France. All of the manuscript collections are being digitized by the International Dunhuang Project, and can be freely accessed online.</p></div></div><hr id="7d5cb552-fa2b-4adf-ad39-fc7e51dc9a26"/><h3 id="5f8b23ca-c486-48ab-a42d-2b716ab56747" class="">Gweagal Shield</h3><div id="d15a059c-fa74-4b31-89a8-beefd4933b05" class="column-list"><div id="4351eff4-e612-4195-bdcc-13606b939eb2" style="width:50%" class="column"><figure id="cb40b670-5fdd-4571-be98-eb4acfd40878" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/d/d2/Bark_shield_2008_british_museum.jpg"><img style="width:432px" src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Bark_shield_2008_british_museum.jpg"/></a></figure></div><div id="663a950a-27a9-4c77-a88b-c49c38fabfb8" style="width:50%" class="column"><p id="db002003-a1ac-4c72-b100-25901a39d4ba" class="">In 1770, after returning to England from their voyage in the South Pacific, Cook and Banks brought with them a large collection of flora and fauna, along with cultural artefacts from their most recent venture. The find included a collection of roughly fifty Aboriginal spears that belonged to the Gweagal people. Banks was convinced the spears were abandoned (on the shores of Kurnell) and &quot;thought it no improper measure to take with them all the lances which they could find, somewhere between 40 or 50&quot;.</p><p id="07f44c4e-c8fe-4d78-95ee-447825638d15" class="">An Aboriginal shield held by the British Museum had until 2018 been described by the Museum as most likely the bark shield dropped by an Aboriginal warrior (identified in Gweagal tradition as Cooman), who was shot in the leg by Cook&#x27;s landing party on 29 April 1770. The shield was lent to the National Museum of Australia in Canberra for an exhibition called Encounters: Revealing stories of Aboriginal and Torres Strait Islander objects from the British Museum, from November 2015 to March 2016. Rodney Kelly, sixth-generation descendant of Cooman, went to see the exhibition and immediately started a campaign for the return of the shield, along with the spears in held in Cambridge. Regarded as stolen objects of cultural significance, Kelly said that &quot;the shield is the most significant and potent symbol of imperial aggression – and subsequent Indigenous self-protection and resistance – in existence&quot;.</p><p id="1297c821-4514-4139-937c-db9d2dcd3db5" class="">In April 2016, the British Museum offered to display the shield in Australia on a loan, but its permanent return was the only acceptable outcome for the Gweagal people. In 2016 the NSW Legislative Council and the Australian Senate passed motions supporting Kelly&#x27;s claims. Kelly made several crowdfunded trips to the UK, and included a trip to Germany in 2016. On this trip, Kelly discovered that the Ethnological Museum of Berlin holds another shield also said to be connected to Cook&#x27;s 1770 visit to Botany Bay.</p><p id="d427319f-4228-4c25-a91c-446cffb980cb" class="">
+</p></div></div><hr id="d4a3c2e2-2eab-44f7-a23e-03a61f60055f"/><hr id="813519d5-b524-4db9-a53b-3465c0963465"/><hr id="72daa2f6-9c32-48d9-94f3-e67d4cbf7cf5"/><hr id="53a919ea-e9a6-40f6-99a5-c98c6a1cbcd0"/><ul id="5cd1ae51-95c5-4c58-b45c-2d66dfb8ab9c" class="toggle"><li><details open=""><summary>Credits</summary><p id="ea9205de-0a41-4fd0-920e-b298129bc551" class="">Benin Bronzes - By Joyofmuseums - Own work, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=76489624">https://commons.wikimedia.org/w/index.php?curid=76489624</a></p><p id="7c53e89e-67fb-4e98-86ba-d9f02b102162" class=""><a href="http://en.wikipedia.org/">En.wikipedia.org</a>. 2021. Benin Bronzes - Wikipedia. [online] Available at: <a href="https://en.wikipedia.org/wiki/Benin_Bronzes">https://en.wikipedia.org/wiki/Benin_Bronzes</a> [Accessed 8 April 2021].</p><p id="0a27babf-b859-460d-8559-6e76070e8c85" class="">Elgin Marbles - By Ivan Bandura - Elgin Marbles, CC BY 2.0, <a href="https://commons.wikimedia.org/w/index.php?curid=45188767">https://commons.wikimedia.org/w/index.php?curid=45188767</a></p><p id="a753dac2-524f-4ca8-a116-719b212be68f" class=""><a href="http://en.wikipedia.org/">En.wikipedia.org</a>. 2021. Elgin Marbles - Wikipedia. [online] Available at: <a href="https://en.wikipedia.org/wiki/Elgin_Marbles">https://en.wikipedia.org/wiki/Elgin_Marbles</a> [Accessed 8 April 2021].</p><p id="e7c16a53-5d21-4f92-a1c5-1049896d85eb" class="">Koh-i-Nor Diamond - By AlinavdMeulen - Own work, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=60460554">https://commons.wikimedia.org/w/index.php?curid=60460554</a></p><p id="462fa96f-7c7c-42b0-9873-ad199fb114a9" class=""><a href="http://en.wikipedia.org/">En.wikipedia.org</a>. 2021. Koh-i-Noor - Wikipedia. [online] Available at: <a href="https://en.wikipedia.org/wiki/Koh-i-Noor">https://en.wikipedia.org/wiki/Koh-i-Noor</a> [Accessed 8 April 2021].</p><p id="b6033716-f1bc-4a40-abab-8300241bb8bc" class="">Rosetta Stone - By Hans Hillewaert, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=3153928">https://commons.wikimedia.org/w/index.php?curid=3153928</a></p><p id="27f47103-5d8f-492a-ad18-c5b4167d43b4" class=""><a href="http://en.wikipedia.org/">En.wikipedia.org</a>. 2021. Rosetta Stone - Wikipedia. [online] Available at: <a href="https://en.wikipedia.org/wiki/Rosetta_Stone">https://en.wikipedia.org/wiki/Rosetta_Stone</a> [Accessed 8 April 2021].</p><p id="208a588f-5191-440b-ba8b-938d157b9167" class="">Tipu’s Tiger - By Victoria and Albert Museum <a href="https://collections.vam.ac.uk/item/O61949/mechanical-organ-automaton-tippoos-tiger/">https://collections.vam.ac.uk/item/O61949/mechanical-organ-automaton-tippoos-tiger/</a>, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=15792661">https://commons.wikimedia.org/w/index.php?curid=15792661</a></p><p id="3a94f752-ec19-421b-b5d5-a85e875ccb37" class=""><a href="http://en.wikipedia.org/">En.wikipedia.org</a>. 2021. Tipu&#x27;s Tiger - Wikipedia. [online] Available at: <a href="https://en.wikipedia.org/wiki/Tipu%27s_Tiger">https://en.wikipedia.org/wiki/Tipu&#x27;s_Tiger</a> [Accessed 8 April 2021].</p><p id="63c27da9-71ad-4907-baf7-c86f896cd08a" class="">Hoa Kakananai&#x27;a - By James Miles - Own work, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=35243634">https://commons.wikimedia.org/w/index.php?curid=35243634</a></p><p id="8153a5ab-7a82-4a43-8615-73ea70fd7161" class="">Hoa Kakananai&#x27;a - By James Miles - Own work, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=35243633">https://commons.wikimedia.org/w/index.php?curid=35243633</a></p><p id="14d58d67-7199-4cd8-b40e-e9321ab864f3" class="">Tabot - By Jean Rebiffé - Own work, CC BY 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=47894915">https://commons.wikimedia.org/w/index.php?curid=47894915</a></p><p id="610c439d-3b0e-4334-9bf8-718e7795f0a2" class="">Oxus Treasure - By Nickmard Khoey - <a href="https://www.flickr.com/photos/nickmard/2866382210/in/set-72157607303096557/">https://www.flickr.com/photos/nickmard/2866382210/in/set-72157607303096557/</a>, CC BY-SA 2.0, <a href="https://commons.wikimedia.org/w/index.php?curid=4822917">https://commons.wikimedia.org/w/index.php?curid=4822917</a></p><p id="454673e6-3501-4c6a-b236-0bb3a24dc65a" class="">Gweagal Shield - By geni - Photo by user:geni, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=11332033">https://commons.wikimedia.org/w/index.php?curid=11332033</a></p><p id="73d7752c-a0de-44d5-a8d6-e279b0e90079" class="">
+</p><p id="c19ec34e-6eeb-44f1-8f63-f0dc58bc91bd" class="">
+</p><p id="44ad1816-530c-4e52-8a0e-834011eeb36a" class="">
+</p><p id="cacdd352-dbdd-49f9-a36c-fb7209de9430" class="">
+</p><p id="02bc3f52-1e45-4a04-abea-65e151ef2355" class="">All text taken from Wikipedia, under a CC-BY-SA license</p></details></li></ul></div></article></body></html>
